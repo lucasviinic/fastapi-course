@@ -31,6 +31,19 @@ async def read_category_by_query(category: str):
 
     return books_to_return
 
+'''
+Assignment
+1. Create a new API Endpoint that can fetch
+all books from a specific author using either Path Parameters or Query Parameters.
+'''
+@app.get("/books/byauthor/")
+async def read_books_by_author(books_author: str):
+    result = []
+    for book in BOOKS:
+        if book.get('author').casefold() == books_author.casefold():
+            result.append(book)
+    return result
+
 @app.get("/books/{book_author}/")
 async def read_author_category_by_query(book_author: str, category: str):
     books_to_return = []
